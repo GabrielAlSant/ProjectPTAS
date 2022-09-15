@@ -52,7 +52,7 @@ app.post('/cadastrar', async function(req, res){
 
 app.get('/usuarios', async function(req, res){
   const usuarios = await usuario.findAll()
-  res.json(usuarios)
+  res.render('usuarios',{usuarios})
 })
 
 app.post('/logar', (req, res) => {
