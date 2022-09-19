@@ -56,10 +56,9 @@ app.get('/usuarios', async function(req, res){
 })
 
 app.post('/logar', async (req, res) => {
+  const usuarios = await usuario.findOne({where:{user: req.body.user}})
 
-  const usuarios = await usuario.findOne()
-
-  if(req.body.user === usuarios.user && req.body.senha === usuarios.senha){
+  if(req.body.user === usuarios.user && req.body.password === usuarios.senha){
     const id = 1;
     const token = jwt.sign({ id }, process.env.SECRET, {
       expiresIn: 3600 // expires in 1 hr
